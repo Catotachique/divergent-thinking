@@ -14,7 +14,7 @@ COPY . .
 RUN go build -o forex_service ./cmd
 
 # Stage 2: Create a minimal image to run the service
-FROM alpine:latest
+FROM ubuntu:latest
 
 WORKDIR /app
 
