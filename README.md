@@ -10,6 +10,9 @@ In a microservices architecture, each service is:
 
     Communicates over HTTP or Messaging: Services typically communicate using REST APIs or through message queues (e.g., RabbitMQ, Kafka).
 
+### Commands
+go mod init forex_service
+go build -o forex_service
 
 ### Folder structure
 /divergent-thinking
