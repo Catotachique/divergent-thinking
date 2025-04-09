@@ -1,10 +1,10 @@
 # Stage 1: Build the Go application
-FROM golang:1.18-alpine as builder
+FROM golang:1.24 AS builder
 
 WORKDIR /app
 
 # Copy go.mod and go.sum and download dependencies
-COPY go.mod go.sum ./
+COPY go.mod ./
 
 # Download the Go modules
 RUN go mod tidy
@@ -16,10 +16,21 @@ COPY . .
 WORKDIR /app/cmd
 
 # Build the application binary
-RUN go build -o forex_service .
+RUN go build -o /app/forex_service .
 
-# Expose the port the service will run on
+
+# Stage 2: Use a lightweight base image to run the app
+FROM ubuntu:latest
+
+WORKDIR /root/
+
+RUN apt update && apt install -y ca-certificates
+
+# Copy the compiled binary from the builder
+COPY --from=builder /app/forex_service .
+
+# Expose the service port
 EXPOSE 8082
 
-# Run the service
+# Run the binary
 CMD ["./forex_service"]

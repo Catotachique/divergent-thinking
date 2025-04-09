@@ -13,7 +13,7 @@ In a microservices architecture, each service is:
 
 ### Folder structure
 /divergent-thinking
-  /user-service
+  /forex-service
     /cmd
       main.go                # Entry point for the service
     /internal
@@ -29,7 +29,7 @@ In a microservices architecture, each service is:
     go.mod                   # Go module dependencies
     go.sum                   # Go module checksum
 
-  /order-service
+  /bet-service
     /cmd
       main.go                # Entry point for the service
     /internal
