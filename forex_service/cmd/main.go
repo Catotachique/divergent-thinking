@@ -11,6 +11,7 @@ import (
 )
 
 // Define a structure that matches the expected JSON format
+// {"success":true,"base":"USD","timestamp":1744156799,"rates":{"EUR":0.9157573147}}
 type ForexResponse struct {
 	Success   bool   `json:"success"`
 	Base      string `json:"base"`

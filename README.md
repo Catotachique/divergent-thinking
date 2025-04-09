@@ -19,7 +19,8 @@ go build -o forex_service ./cmd
 ### Commands to build and run the microservice in Docker
 cd /workspaces/divergent-thinking/forex_service
 docker build -t forex_service .
-
+docker run -p 8082:8082 -v /workspaces/divergent-thinking/forex_service/.env:/root/.env forex_service
+docker exec -it <container_id> sh
 
 ### Folder structure
 /divergent-thinking
