@@ -5,21 +5,18 @@ WORKDIR /app
 
 # Copy go.mod and go.sum and download dependencies
 COPY go.mod go.sum ./
+
+# Download the Go modules
 RUN go mod tidy
 
 # Copy the source code
 COPY . .
 
+# Set the working directory to the "cmd" folder where the main.go is located
+WORKDIR /app/cmd
+
 # Build the application binary
-RUN go build -o forex_service ./cmd
-
-# Stage 2: Create a minimal image to run the service
-FROM ubuntu:latest
-
-WORKDIR /app
-
-# Copy the built binary from the builder stage
-COPY --from=builder /app/forex_service /app/
+RUN go build -o forex_service .
 
 # Expose the port the service will run on
 EXPOSE 8082
